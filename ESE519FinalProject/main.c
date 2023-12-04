@@ -11,6 +11,10 @@
 #include <avr/interrupt.h>
 #include <util/delay.h>
 
+//include Free RTOS
+#include "FreeRTOS.h"
+#include "task.h"
+
 //include UART
 #include "lib/uart.h"
 #include "lib/hx711.h"
@@ -263,7 +267,7 @@ int main(void)
 		/*servo_rotate();*/
 		
 
- 		HX711_measure_weight();
+ 		/*HX711_measure_weight();*/
 // 		if (soil_mositure < 40)
 // 		{
 // 			relay_open();
