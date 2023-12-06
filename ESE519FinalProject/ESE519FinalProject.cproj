@@ -198,6 +198,18 @@
     <Compile Include="lib\hx711.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="lib\i2c.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="lib\i2c.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="lib\shtc3.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="lib\shtc3.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="lib\uart.c">
       <SubType>compile</SubType>
     </Compile>
@@ -219,7 +231,16 @@
     <Folder Include="lib\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="FreeRTOS\Makefile">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="FreeRTOS\README.md">
+      <SubType>compile</SubType>
+    </None>
     <None Include="FreeRTOS\Source\include\stdint.readme">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="FreeRTOS\Source\readme.txt">
       <SubType>compile</SubType>
     </None>
   </ItemGroup>

@@ -20,6 +20,10 @@ FreeRTOS\Source\timers.c
 
 lib\hx711.c
 
+lib\i2c.c
+
+lib\shtc3.c
+
 lib\uart.c
 
 main.c

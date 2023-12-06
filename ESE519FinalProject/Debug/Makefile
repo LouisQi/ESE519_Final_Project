@@ -54,6 +54,8 @@ C_SRCS +=  \
 ../FreeRTOS/Source/tasks.c \
 ../FreeRTOS/Source/timers.c \
 ../lib/hx711.c \
+../lib/i2c.c \
+../lib/shtc3.c \
 ../lib/uart.c \
 ../main.c
 
@@ -74,6 +76,8 @@ FreeRTOS/Source/queue.o \
 FreeRTOS/Source/tasks.o \
 FreeRTOS/Source/timers.o \
 lib/hx711.o \
+lib/i2c.o \
+lib/shtc3.o \
 lib/uart.o \
 main.o
 
@@ -87,6 +91,8 @@ FreeRTOS/Source/queue.o \
 FreeRTOS/Source/tasks.o \
 FreeRTOS/Source/timers.o \
 lib/hx711.o \
+lib/i2c.o \
+lib/shtc3.o \
 lib/uart.o \
 main.o
 
@@ -100,6 +106,8 @@ FreeRTOS/Source/queue.d \
 FreeRTOS/Source/tasks.d \
 FreeRTOS/Source/timers.d \
 lib/hx711.d \
+lib/i2c.d \
+lib/shtc3.d \
 lib/uart.d \
 main.d
 
@@ -113,6 +121,8 @@ FreeRTOS/Source/queue.d \
 FreeRTOS/Source/tasks.d \
 FreeRTOS/Source/timers.d \
 lib/hx711.d \
+lib/i2c.d \
+lib/shtc3.d \
 lib/uart.d \
 main.d
 
@@ -187,6 +197,20 @@ FreeRTOS/Source/timers.o: ../FreeRTOS/Source/timers.c
 	
 
 lib/hx711.o: ../lib/hx711.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\Atmel\ATmega_DFP\2.1.506\include" -I"../FreeRTOS" -I"../FreeRTOS/Source/include" -I"../FreeRTOS/Source/portable/GCC/ATMega328"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega328p -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\Atmel\ATmega_DFP\2.1.506\gcc\dev\atmega328p" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+lib/i2c.o: ../lib/i2c.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\Atmel\ATmega_DFP\2.1.506\include" -I"../FreeRTOS" -I"../FreeRTOS/Source/include" -I"../FreeRTOS/Source/portable/GCC/ATMega328"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega328p -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\Atmel\ATmega_DFP\2.1.506\gcc\dev\atmega328p" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+lib/shtc3.o: ../lib/shtc3.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\Atmel\ATmega_DFP\2.1.506\include" -I"../FreeRTOS" -I"../FreeRTOS/Source/include" -I"../FreeRTOS/Source/portable/GCC/ATMega328"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega328p -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\Atmel\ATmega_DFP\2.1.506\gcc\dev\atmega328p" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
