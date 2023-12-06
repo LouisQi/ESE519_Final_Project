@@ -67,7 +67,8 @@ double calibrationweight = 0.0095; /*0.082;*/ /*8540200;*/
 double weight = 0;
 
 // Initialize humanity and temperature reading 
-float shtc3_tmp;
+float shtc3_temperature;
+float shtc3_humanity;
 SHTC3_t shtc3;
 
 void Initialization ()
@@ -230,8 +231,8 @@ void SHTC3_measure_humanity_temperature()
 		UART_print(String);
 	}		
 	
-	if(shtc3_get_temperature(&shtc3, &shtc3_tmp, 1) == SHTC3_RET_OK) {
-		dtostrf(shtc3_tmp,3,2,printbuff);
+	if(shtc3_get_temperature(&shtc3, &shtc3_temperature, 1) == SHTC3_RET_OK) {
+		dtostrf(shtc3_temperature,3,2,printbuff);
 		sprintf(String,"Temp is: %s C\n\r",printbuff);
 		UART_print(String);
 	} else {
@@ -239,8 +240,8 @@ void SHTC3_measure_humanity_temperature()
 		UART_print(String);
 	}
 			
-	if(shtc3_get_humidity(&shtc3, &shtc3_tmp, 1) == SHTC3_RET_OK) {
-		dtostrf(shtc3_tmp,3,2,printbuff);
+	if(shtc3_get_humidity(&shtc3, &shtc3_humanity, 1) == SHTC3_RET_OK) {
+		dtostrf(shtc3_humanity,3,2,printbuff);
 		sprintf(String,"Humanity is: %s\n\r",printbuff);
 		UART_print(String);
 	} else {
