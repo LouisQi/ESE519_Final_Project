@@ -40,14 +40,6 @@
 #define ROTATION_STEP					60
 #define ROTATION_THRESHOLD				50
 
-// I2c info
-#define SHTC3_I2C_ADDRESS				0x70
-#define SHTC3_I2C_WAKEUP_MSB			0x35
-#define SHTC3_I2C_WAKEUP_LSB			0x17
-#define SHTC3_I2C_MEASURE_MSB			0x58
-#define SHTC3_I2C_MEASURE_LSB			0xe0
-#define SHTC3_I2C_SLEEP_MSB				0xb0
-#define SHTC3_I2C_SLEEP_LSB				0x98
 
 // 0 for stop, -1 for counterclockwise, 1 for clockwise
 int rotationDirection = 0; 
