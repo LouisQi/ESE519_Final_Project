@@ -67,12 +67,8 @@ double calibrationweight = 0.0095; /*0.082;*/ /*8540200;*/
 double weight = 0;
 
 // Initialize humanity and temperature reading 
-// uint16_t humanity = 0;
-// uint16_t temperature = 0;
-// float converted_humanity = 0;
-// float converted_temperature = 0;
-// uint8_t i2c_data[3]; 
-// ret_code_t error_code;
+float shtc3_tmp;
+SHTC3_t shtc3;
 
 void Initialization ()
 {
@@ -228,14 +224,12 @@ void HX711_measure_weight()
 
 void SHTC3_measure_humanity_temperature()
 {
-	SHTC3_t shtc3;
 
 	if(shtc3_init(&shtc3, SHTC3_I2C_ADDRESS) != SHTC3_RET_OK) {
 		sprintf(String,"Couldn't initialize SHTC3 ... aborting!\n");
 		UART_print(String);
-	}
-			
-	float shtc3_tmp;
+	}		
+	
 	if(shtc3_get_temperature(&shtc3, &shtc3_tmp, 1) == SHTC3_RET_OK) {
 		dtostrf(shtc3_tmp,3,2,printbuff);
 		sprintf(String,"Temp is: %s C\n\r",printbuff);
