@@ -34,7 +34,7 @@ void loop() {
 
 
     // Convert the split strings to float
-    SoilHumidity = soilHumidityStr.toFloat();
+    SoilHumidity = soilHumidityStr.toInt();
     WaterTank = waterTankStr.toFloat();
     AirHumidity = AirHumidityStr.toFloat();
     AirTemp = AirTempStr.toFloat();
@@ -54,5 +54,4 @@ void loop() {
     Serial.println(PumpStatus);
   }
 
-  //delay(200);
 }
