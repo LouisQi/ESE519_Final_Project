@@ -80,13 +80,32 @@ void Read(){
 
 
     // Convert the split strings to float
-    SoilHumidity = soilHumidityStr.toFloat();
-    WaterTank = waterTankStr.toFloat();
-    AirHumidity = AirHumidityStr.toFloat();
-    AirTemp = AirTempStr.toFloat();
-    PumpStatus = PumpStatusStr.toFloat();
-    
+    float newSoilHumidity = soilHumidityStr.toInt();
+    float newWaterTank = waterTankStr.toFloat();
+    float newAirHumidity = AirHumidityStr.toFloat();
+    float newAirTemp = AirTempStr.toFloat();
+    float newPumpStatus = PumpStatusStr.toFloat();
 
+    if (newSoilHumidity != 0.0) {
+      SoilHumidity = newSoilHumidity;
+    }
+
+    if (newWaterTank != 0.0) {
+      WaterTank = newWaterTank;
+    }
+
+    if (newAirHumidity != 0.0) {
+      AirHumidity = newAirHumidity;
+    }
+
+    if (newAirTemp != 0.0) {
+      AirTemp = newAirTemp;
+    }
+
+    if (newPumpStatus != 0.0) {
+      PumpStatus = newPumpStatus;
+    }
+    
     // Print the values
     Serial.print("Soil Humidity: ");
     Serial.println(SoilHumidity);
