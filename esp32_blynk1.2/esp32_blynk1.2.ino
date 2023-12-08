@@ -22,7 +22,7 @@ float SoilHumidity = 0.0;
 float WaterTank = 0.0; 
 float AirHumidity = 0.0;
 float AirTemp = 0.0; 
-float PumpStatus = 0.0;
+float PumpStatus = -1;
 
 // Your WiFi credentials.
 // Set password to "" for open networks.
@@ -86,23 +86,23 @@ void Read(){
     float newAirTemp = AirTempStr.toFloat();
     float newPumpStatus = PumpStatusStr.toFloat();
 
-    if (newSoilHumidity != 0.0) {
+    if (newSoilHumidity != 0.0 && newSoilHumidity >= 20 && newSoilHumidity <= 100) {
       SoilHumidity = newSoilHumidity;
     }
 
-    if (newWaterTank != 0.0) {
+    if (newWaterTank != 0.0 && newWaterTank <= 5.0 && newWaterTank > 0.0) {
       WaterTank = newWaterTank;
     }
 
-    if (newAirHumidity != 0.0) {
+    if (newAirHumidity != 0.0 && newAirHumidity >= 23 && newAirHumidity <= 80) {
       AirHumidity = newAirHumidity;
     }
 
-    if (newAirTemp != 0.0) {
+    if (newAirTemp != 0.0 && newAirTemp > 10.0 && newAirTemp < 40.0) {
       AirTemp = newAirTemp;
     }
 
-    if (newPumpStatus != 0.0) {
+    if (newPumpStatus == -1 || newPumpStatus == 1) {
       PumpStatus = newPumpStatus;
     }
     
