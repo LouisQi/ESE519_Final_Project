@@ -92,6 +92,10 @@ void Initialization ()
 	// Set a pre-scaler of 6
 	set (TCCR1B,CS11);
 	
+	// 16MHz/8/40000 = 50Hz
+	// Period = 1/50Hz = 0.02s = 20ms
+	// Full travel ~2.65ms = 13.25% duty cycle = 40000*0.1325 = 5300
+	// Origin ~0.35ms = 1.75% duty cycle = 40000*0.0175 = 700
 	ICR1 = 40000;	
 	OCR1A = 700;
 	
