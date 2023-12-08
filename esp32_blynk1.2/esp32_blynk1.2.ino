@@ -26,8 +26,8 @@ float PumpStatus = -1;
 
 // Your WiFi credentials.
 // Set password to "" for open networks.
-char ssid[] = "sunglab";
-char pass[] = "makergear";
+const char* ssid = "XXXXXX";
+const char* password = "XXXXXXX"; //please use personal ssid and password
 
 BlynkTimer timer;
 
