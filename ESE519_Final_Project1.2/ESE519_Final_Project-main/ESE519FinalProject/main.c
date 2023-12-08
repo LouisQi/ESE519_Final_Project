@@ -41,7 +41,7 @@ double pump = -1;
 
 // Servo pin
 #define SERVO_PIN						PORTB1
-#define ROTATION_STEP					60
+#define ROTATION_STEP					50
 #define ROTATION_THRESHOLD				50
 
 
@@ -92,8 +92,8 @@ void Initialization ()
 	// Set a pre-scaler of 6
 	set (TCCR1B,CS11);
 	
-	ICR1 = 39999;	
-	OCR1A = 4799;
+	ICR1 = 40000;	
+	OCR1A = 700;
 	
 }
 
@@ -185,13 +185,13 @@ void Watering_and_SunSeeking()
 	 
 	 OCR1A += rotationDirection*ROTATION_STEP;
 	 
-	 if (OCR1A < 1199)
+	 if (OCR1A < 700)
 	 {
-		 OCR1A = 1199;
+		 OCR1A = 700;
 	 }
-	 else if (OCR1A > 4799)
+	 else if (OCR1A > 5300)
 	 {
-		 OCR1A = 4799;
+		 OCR1A = 5300;
 	 }
 	 
 	 if (soil_mositure < 40)
