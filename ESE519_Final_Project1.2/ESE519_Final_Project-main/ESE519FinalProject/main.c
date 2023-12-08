@@ -29,7 +29,7 @@
 #define SOIL_MOISTURE_CHANNEL			2
 
 // Moisture param
-#define WATER_VALUE						300
+#define WATER_VALUE						270
 #define AIR_VALUE						624
 
 // Relay pin
@@ -37,12 +37,12 @@
 double pump = -1;
 
 // Buzzer pin
-#define BUZZER PORTD3
+#define BUZZER							PORTD3
 
 // Servo pin
 #define SERVO_PIN						PORTB1
-#define ROTATION_STEP					50
-#define ROTATION_THRESHOLD				50
+#define ROTATION_STEP					20
+#define ROTATION_THRESHOLD				100
 
 
 // 0 for stop, -1 for counterclockwise, 1 for clockwise
@@ -72,8 +72,8 @@ double calibrationweight = 0.0095; /*0.082;*/ /*8540200;*/
 double weight = 0;
 
 // Initialize humanity and temperature reading 
-double shtc3_temperature;
-double shtc3_humanity;
+float shtc3_temperature;
+float shtc3_humanity;
 SHTC3_t shtc3;
 
 void Initialization ()
@@ -82,14 +82,13 @@ void Initialization ()
 	set (DDRD,RELAY_PIN);
 	set (DDRB,SERVO_PIN);
 	
-	//setup timer2
 	// Fast PWM with 0xFF at TOP and update OC2B at BOTTOM
 	set (TCCR1A,WGM11);	
 	set (TCCR1B,WGM12);
 	set (TCCR1B,WGM13);		
 	set (TCCR1A,COM1A1);
 	
-	// Set a pre-scaler of 6
+	// Set a pre-scaler of 8
 	set (TCCR1B,CS11);
 	
 	// 16MHz/8/40000 = 50Hz
@@ -203,18 +202,18 @@ void Watering_and_SunSeeking()
 		//open the pump
 		set(PORTD,PORTD4);
 		pump = 1;
-		_delay_ms(100);
+		_delay_ms(50);
 		clear(PORTD,PORTD4);
+		_delay_ms(100);
 		
-		_delay_ms(500);
 	 }else{
 		 pump = -1;
 	 }
 	 
-// 	 // Simplified UART print statements
-// 	 sprintf(String, "Photoresistor reading 1: %u\n\rPhotoresistor reading 2: %u\n\r Soil moisture: %ld percent\n\r OCR1A reading is:%d\n\r",
-// 	 photoresistor1_reading, photoresistor2_reading,soil_mositure, OCR1A);
-// 	 UART_print(String);
+	 // Simplified UART print statements
+	 sprintf(String, "Photoresistor reading 1: %u\n\rPhotoresistor reading 2: %u\n\r Soil moisture: %ld percent\n\r",
+	 photoresistor1_reading, photoresistor2_reading,soil_mositure);
+	 UART_print(String);
 
 }
 
@@ -228,10 +227,18 @@ void HX711_measure_weight()
 	{
 		weight = -weight;
 	}
+	
+	if (weight < 0.2)
+	{
+		set (PORTD,BUZZER);
+		_delay_ms(50);
+		clear (PORTD,BUZZER);
+		_delay_ms(200);
+	}
 		
 	dtostrf(weight, 3, 2, printbuff);
 	sprintf(String,"Weight: %s kg\n\r",printbuff);
-	UART_print(String);
+// 	UART_print(String);
 	_delay_ms(50);
 
 }
@@ -241,25 +248,25 @@ void SHTC3_measure_humanity_temperature()
 
 	if(shtc3_init(&shtc3, SHTC3_I2C_ADDRESS) != SHTC3_RET_OK) {
 		sprintf(String,"Couldn't initialize SHTC3 ... aborting!\n");
-		UART_print(String);
+// 		UART_print(String);
 	}		
 	
 	if(shtc3_get_temperature(&shtc3, &shtc3_temperature, 1) == SHTC3_RET_OK) {
 		dtostrf(shtc3_temperature,3,2,printbuff);
 		sprintf(String,"Temp is: %s C\n\r",printbuff);
-		UART_print(String);
+// 		UART_print(String);
 	} else {
 		sprintf(String,"ERROR\n");
-		UART_print(String);
+// 		UART_print(String);
 	}
 			
 	if(shtc3_get_humidity(&shtc3, &shtc3_humanity, 1) == SHTC3_RET_OK) {
 		dtostrf(shtc3_humanity,3,2,printbuff);
 		sprintf(String,"Humanity is: %s\n\r",printbuff);
-		UART_print(String);
+// 		UART_print(String);
 	} else {
 		sprintf(String,"ERROR\n");
-		UART_print(String);
+// 		UART_print(String);
 	}
 }
 
@@ -286,13 +293,6 @@ void transend(long int number1, double number2,double number3,double number4,dou
 	uart_transmit_string(charArray); // Send the message over UART
 }
 
-void Buzzer(){
-	PORTD |= (1 << BUZZER);
-	_delay_ms(200);
-	PORTD &= ~(1 << BUZZER);
-	_delay_ms(50);
-}
-
 
 int main(void)
 {
@@ -316,6 +316,7 @@ int main(void)
 		HX711_measure_weight();
 		Watering_and_SunSeeking();
 		SHTC3_measure_humanity_temperature();
+				
 		
 // 		sprintf(String,"Photoresistor reading 1: %u\n\r",photoresistor1_reading);
 // 		UART_print(String);
@@ -326,9 +327,6 @@ int main(void)
 	
 		transend(soil_mositure, weight ,shtc3_humanity,shtc3_temperature, pump , charArray);
 		
-		if (weight<0.2)
-		{
-			Buzzer();
-		}	
+
     }
 }
