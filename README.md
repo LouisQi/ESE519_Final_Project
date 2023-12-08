@@ -28,8 +28,6 @@ Plant Butler is a smart plant care system designed to simplify the task of nurtu
 - Arduino IDE: [Download here](https://www.arduino.cc/en/software)
 - ESP32 board manager installation tutorial: [Follow these instructions](https://www.instructables.com/Installing-the-ESP32-Board-in-Arduino-IDE-Windows-/)
 3. Ensure all dependent libraries are installed.
-4. Connect the hardware according to the schematics provided (to be added).
-
 
 ## File Descriptions
 1. **`esp32_blynk1.2.ino`**: Manages data reception from Arduino Uno and controls variables like temperature, humidity, etc.
