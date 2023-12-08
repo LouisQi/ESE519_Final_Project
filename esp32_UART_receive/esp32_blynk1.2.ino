@@ -25,8 +25,11 @@ float AirHumidity = 0.0;
 float AirTemp = 0.0; 
 float PumpStatus = -1;
 
-// Your WiFi credentials.
-// Set password to "" for open networks.
+// ===========================
+// Enter your WiFi credentials
+// ===========================
+const char* ssid = "XXXXXX";
+const char* password = "XXXXXXX"; //please use personal ssid and password
 
 
 BlynkTimer timer;
