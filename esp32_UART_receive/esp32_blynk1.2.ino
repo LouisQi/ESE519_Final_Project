@@ -26,8 +26,8 @@ float PumpStatus = -1;
 
 // Your WiFi credentials.
 // Set password to "" for open networks.
-char ssid[] = "Xueyang";
-char pass[] = "XueyangQi";
+char ssid[] = "XXXXX";
+char pass[] = "XXXXXXXXXXX";
 
 BlynkTimer timer;
 
