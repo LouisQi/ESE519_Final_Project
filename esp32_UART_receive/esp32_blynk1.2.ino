@@ -8,9 +8,9 @@
 #define BLYNK_PRINT Serial
 
 /* Fill-in your Template ID (only if using Blynk.Cloud) */
-#define BLYNK_TEMPLATE_ID "TMPL2kAnDz2Uw"
-#define BLYNK_TEMPLATE_NAME "ESE519final"
-#define BLYNK_AUTH_TOKEN "MuxdCZLVchxayJkTi8GQkXsEYvoQS5Km"
+#define BLYNK_TEMPLATE_ID "XXXXXXXX"
+#define BLYNK_TEMPLATE_NAME "XXXXXXXX"
+#define BLYNK_AUTH_TOKEN "XXXXXXXXXXXXXXXXXXXXX"
 
 #include <WiFi.h>
 #include <WiFiClient.h>
