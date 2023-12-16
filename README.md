@@ -46,6 +46,6 @@ Plant Butler is a smart plant care system designed to simplify the task of nurtu
 - Monitor sensor data and control variables through the Blynk app with `esp32_blynk1.2.ino`.
 
 ## Links may be useful
-1. https://devpost.com/software/plant-butler
-2. https://youtu.be/8zYo-L7o6YI?si=dqHXQ3bT5Y0RU1NC
+1. Devpost:   https://devpost.com/software/plant-butler
+2. YouTube:   https://youtu.be/8zYo-L7o6YI?si=dqHXQ3bT5Y0RU1NC
 
